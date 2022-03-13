@@ -1,8 +1,8 @@
 package com.projeto.devagro;
 
-import com.projeto.devagro.entity.*;
-import com.projeto.devagro.entity.enums.Sexo;
-import com.projeto.devagro.repository.*;
+import com.projeto.devagro.entities.*;
+import com.projeto.devagro.entities.enums.Sexo;
+import com.projeto.devagro.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -59,8 +59,8 @@ public class DevagroApplication implements CommandLineRunner {
 
 		funcionarioRepository.saveAll(Arrays.asList(func1, func2, func3, func4, func5));
 
-		Empresa e1 = new Empresa(1L, "Empresa Java LTDA", "97.753.887/0001-20", "java@gmail.com", "988888888", "123456");
-		Empresa e2 = new Empresa(2L, "Empresa Python SA", "36.890.964/0001-08", "python@gmail.com", "977777777", "123456");
+		Empresa e1 = new Empresa(1L, "Empresa Java LTDA", "97.753.887/0001-20", "Rua 8 num 90");
+		Empresa e2 = new Empresa(2L, "Empresa Python SA", "36.890.964/0001-08", "Rua 4 num 2");
 
 		Fazenda fazenda1 = new Fazenda(1L, "Fazenda Arrocha", Instant.parse("2022-03-11T19:53:07Z"), e1, 1000.00);
 		Fazenda fazenda2 = new Fazenda(2L, "Fazenda DevInHouse", Instant.parse("2022-03-11T03:42:10Z"), e1, 500.00);

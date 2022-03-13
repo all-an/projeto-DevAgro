@@ -13,16 +13,50 @@ API Rest em Java para o controle de produção agrícola com interação entre F
 - Spring Boot 2
 - PostgreSQL
 
+## Executando a aplicação:
+
+- IDE IntelliJ IDEA Community Edition 2021.2.3 ou superior
+
 ## Requisitos Funcionais:
 - [Checklist / Roadmap dos Requisistos Funcionais do sistema](https://github.com/all-an/DEV-Agro/blob/main/RequisitosFuncionais.md)
 
-## Exemplos de entradas de dados em formato Json e respectivos Endpoints:
+## Cadastrando Empresa:
+```json
+```
+
+```json
+{
+    "nome": "Empresa SENAI LTDA",
+    "cnpj": "00.536.492/0001-34",
+    "endereco": "Rua 1 num 1"
+}
+```
+### Cadastrando Empresa com CNPJ inválido:
+
+```json
+{
+    "nome": "Empresa ERRADA LTDA",
+    "cnpj": "0000001234",
+    "endereco": "Rua 1 num 1"
+}
+
+```
+### Retorno esperado:
+
+```json
+{
+    "dados": null,
+    "erros": [
+        "Formate assim CNPJ XX.XXX.XXX/XXXX-XX",
+        "invalid Brazilian corporate taxpayer registry number (CNPJ)"
+    ]
+}
+```
+
+
+## Outros exemplos de entradas de dados em formato Json e respectivos Endpoints:
 
 - [Exemplos, Json e Endpoints](https://github.com/all-an/dev-agro-devinhouse/blob/main/ExemplosJsonEntradas.md)
-
-## Executando a aplicação:
-
-- IDE IntelliJ IDEA Community Edition 2021.2.3
 
 ## Autor:
 - [Allan Pereira Abrahão](https://www.linkedin.com/in/allan-pereira-abrahao/)
