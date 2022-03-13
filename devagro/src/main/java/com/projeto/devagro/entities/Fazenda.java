@@ -19,6 +19,8 @@ public class Fazenda implements Serializable {
 
     private String nome;
 
+    private String endereco;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dataUltimaColheita;
 
@@ -31,7 +33,9 @@ public class Fazenda implements Serializable {
     @OneToMany(mappedBy = "id.fazenda")
     private Set<FuncionarioFazenda> funcionariosFazendas = new HashSet<>();
 
-    @OneToOne(mappedBy = "fazenda", cascade = CascadeType.ALL) //mapeando mesmo id que Grao
+    //@OneToOne(mappedBy = "fazenda", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "grao_id", referencedColumnName = "id")
     private Grao grao;
 
     private Double estoqueInicialGraos;
@@ -43,9 +47,11 @@ public class Fazenda implements Serializable {
     public Fazenda() {
     }
 
-    public Fazenda(Long id, String nome, Instant dataUlTimaColheita, Empresa empresa, Double estoqueInicialGraos) {
+    public Fazenda(Long id, String nome, String endereco, Grao grao, Instant dataUlTimaColheita, Empresa empresa, Double estoqueInicialGraos) {
         this.id = id;
         this.nome = nome;
+        this.endereco = endereco;
+        this.grao = grao;
         this.dataUltimaColheita = dataUlTimaColheita;
         this.empresa = empresa;
         this.estoqueInicialGraos = estoqueInicialGraos;
@@ -65,6 +71,14 @@ public class Fazenda implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public Instant getDataUltimaColheita() {

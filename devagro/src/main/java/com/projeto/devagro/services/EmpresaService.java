@@ -29,8 +29,8 @@ public class EmpresaService {
         return obj.orElseThrow(() -> new RecursoNaoEncontradoException(id));
     }
 
-    public Empresa inserir(Empresa obj) {
-        return repository.save(obj);
+    public Empresa inserir(Empresa empresa) {
+        return repository.save(empresa);
     }
 
     public void deletar(Long id) {

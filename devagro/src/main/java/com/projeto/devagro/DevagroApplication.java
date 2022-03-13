@@ -29,6 +29,9 @@ public class DevagroApplication implements CommandLineRunner {
 	@Autowired
 	private FuncionarioFazendaRepository funcionarioFazendaRepository;
 
+	@Autowired
+	private GraoRepository graoRepository;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(DevagroApplication.class, args);
@@ -36,6 +39,8 @@ public class DevagroApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		// instanciações somente para testes
 
 		Funcao f1 = new Funcao(1L, "Operador de Colheitadeira");
 		Funcao f2 = new Funcao(2L, "Operador de Plantador");
@@ -62,12 +67,13 @@ public class DevagroApplication implements CommandLineRunner {
 		Empresa e1 = new Empresa(1L, "Empresa Java LTDA", "97.753.887/0001-20", "Rua 8 num 90");
 		Empresa e2 = new Empresa(2L, "Empresa Python SA", "36.890.964/0001-08", "Rua 4 num 2");
 
-		Fazenda fazenda1 = new Fazenda(1L, "Fazenda Arrocha", Instant.parse("2022-03-11T19:53:07Z"), e1, 1000.00);
-		Fazenda fazenda2 = new Fazenda(2L, "Fazenda DevInHouse", Instant.parse("2022-03-11T03:42:10Z"), e1, 500.00);
-		Fazenda fazenda3 = new Fazenda(3L, "Fazenda Ai Papai", Instant.parse("2022-03-11T15:21:22Z"), e1, 3000.00);
+		Fazenda fazenda1 = new Fazenda(1L, "Fazenda Arrocha","Rua 1 num 3", null,  Instant.parse("2022-03-11T19:53:07Z"), e1, 1000.00);
+		Fazenda fazenda2 = new Fazenda(2L, "Fazenda DevInHouse", "Rua 2 num 2",null, Instant.parse("2022-03-11T03:42:10Z"), e1, 500.00);
+		Fazenda fazenda3 = new Fazenda(3L, "Fazenda Ai Papai", "Rua 3 num 1", null, Instant.parse("2022-03-11T15:21:22Z"), e1, 3000.00);
+		Fazenda fazenda4 = new Fazenda(4L, "Fazenda Cavalo", "Rua 8 num 8", null, Instant.parse("2022-03-11T15:21:22Z"), e1, 3000.00);
 
 		empresaRepository.saveAll(Arrays.asList(e1, e2));
-		fazendaRepository.saveAll(Arrays.asList(fazenda1, fazenda2, fazenda3));
+		fazendaRepository.saveAll(Arrays.asList(fazenda1, fazenda2, fazenda3, fazenda4));
 
 		FuncionarioFazenda ff1 = new FuncionarioFazenda(fazenda1, func1, 10, func1.getSalario());
 		FuncionarioFazenda ff2 = new FuncionarioFazenda(fazenda1, func3, 7, func3.getSalario());
@@ -79,12 +85,16 @@ public class DevagroApplication implements CommandLineRunner {
 		Grao grao1 = new Grao(1L,"Milho", 120, fazenda1 );
 		Grao grao2 = new Grao(2L,"Soja", 150,  fazenda2 );
 		Grao grao3 = new Grao(3L,"Feijão", 110, fazenda3 );
+		Grao grao4 = new Grao(4L,"Arroz", 5000, fazenda4 );
+
+		graoRepository.saveAll(Arrays.asList(grao1, grao2, grao3, grao4));
 
 		fazenda1.setGrao(grao1);
 		fazenda2.setGrao(grao2);
 		fazenda3.setGrao(grao3);
+		fazenda4.setGrao(grao4);
 
-		fazendaRepository.saveAll(Arrays.asList(fazenda1, fazenda2, fazenda3));
+		fazendaRepository.saveAll(Arrays.asList(fazenda1, fazenda2, fazenda3, fazenda4));
 
 	}
 

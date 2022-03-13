@@ -21,6 +21,10 @@ public class FazendaService {
         return repository.findAll();
     }
 
+    public Fazenda inserir(Fazenda fazenda) {
+        return repository.save(fazenda);
+    }
+
     public Fazenda encontrarPorId(Long id) {
         Optional<Fazenda> obj = repository.findById(id);
         return obj.get();

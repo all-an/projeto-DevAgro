@@ -52,7 +52,27 @@ API Rest em Java para o controle de produção agrícola com interação entre F
     ]
 }
 ```
+## Cadastrando Fazenda:
 
+```json
+{
+    "nome": "Fazenda NOVA",
+    "endereco": "Rua 111 num 9999",
+    "grao": {
+        "id": 1,
+        "nome": "Milho"
+    },
+    "dataUltimaColheita": "2022-03-11T19:53:07Z",
+    "empresa": {
+        "id": 1,
+        "nome": "Empresa Java LTDA",
+        "cnpj": "97.753.887/0001-20",
+        "endereco": "Rua 8 num 90"
+    },
+    "estoqueInicialGraos": 1000.0
+}
+}
+```
 
 ## Outros exemplos de entradas de dados em formato Json e respectivos Endpoints:
 

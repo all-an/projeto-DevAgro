@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_grao")
@@ -20,21 +22,19 @@ public class Grao implements Serializable {
     private Instant dataUltimaColheita;
 
     @JsonIgnore
-    @OneToOne
-    @MapsId
-    private Fazenda fazenda;
+    @OneToMany(mappedBy = "grao")
+    private List<Fazenda> fazendas = new ArrayList<>();
 
     public Grao() {
     }
 
     public Grao(Long id, String nome, Integer tempoColheita, Fazenda fazenda) {
-        super();
         this.id = id;
         this.nome = nome;
         this.tempoMedioColheita = tempoColheita;
         this.nomeEmpresa = fazenda.getEmpresa().getNome();
         this.dataUltimaColheita = fazenda.getDataUltimaColheita();
-        this.fazenda = fazenda;
+        fazendas.add(fazenda);
     }
 
     public Long getId() {
@@ -69,12 +69,14 @@ public class Grao implements Serializable {
         this.dataUltimaColheita = dataUltimaColheita;
     }
 
-    public Fazenda getFazenda() {
-        return fazenda;
+    public List<Fazenda> getFazendas() {
+        return fazendas;
     }
 
-    public void setFazenda(Fazenda fazenda) {
-        this.fazenda = this.fazenda;
+    public void addFazenda(Fazenda fazenda) {
+
+        fazendas.add(fazenda);
+
     }
 
     @Override

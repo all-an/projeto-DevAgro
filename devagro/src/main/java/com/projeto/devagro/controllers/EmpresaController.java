@@ -81,7 +81,7 @@ public class EmpresaController {
         return ResponseEntity.ok().body(listaGraos);
     }
 
-    //fonte onde encontrei o retorno em ordem crescente
+    //fonte onde encontrei o retorno em ordem crescente que está em service
     //https://howtodoinjava.com/java/sort/java-sort-map-by-values/
     @GetMapping(value = "/estoquesGraos/{id}")
     public ResponseEntity<LinkedHashMap<String, Double>> estoqueDeGraosOrdemCrescente(@PathVariable Long id) {
@@ -100,9 +100,9 @@ public class EmpresaController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
 
-        Empresa Empresa = service.inserir(emp);
+        Empresa empresa = service.inserir(emp);
 
-        response.setDados(Empresa);
+        response.setDados(empresa);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -114,8 +114,8 @@ public class EmpresaController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Empresa> atualizar(@PathVariable Long id, @RequestBody Empresa obj) {
-        obj = service.atualizar(id, obj);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Empresa> atualizar(@PathVariable Long id, @RequestBody Empresa nova) {
+        nova = service.atualizar(id, nova);
+        return ResponseEntity.ok().body(nova);
     }
 }
