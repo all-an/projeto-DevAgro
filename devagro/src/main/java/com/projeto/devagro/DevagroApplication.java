@@ -46,11 +46,11 @@ public class DevagroApplication implements CommandLineRunner {
 		Funcao f2 = new Funcao(2L, "Operador de Plantador");
 		Funcao f3 = new Funcao(3L, "Piloto de Drone");
 
-		Funcionario func1 = new Funcionario(1L, "Dennis", "Ritchie", Sexo.MASCULINO,"Rua 2 num 4", 1200.0,  "(49) 916787675", "01/01/2001", "01/01/2022");
-		Funcionario func2 = new Funcionario(2L, "Ada","Lovelace", Sexo.FEMININO, "Rua 7 num 32", 2000.0,  "(21) 916787675", "02/01/2001", "02/01/2022");
-		Funcionario func3 = new Funcionario(3L, "Linus", "Torvalds", Sexo.MASCULINO,"Rua 1 num 42", 800.0,  "(31) 916787675", "03/01/2001",  "03/01/2022");
-		Funcionario func4 = new Funcionario(4L, "Bjarn", "Stroustrup", Sexo.NAO_INFORMADO,"Rua 1 num 43", 500.0,  "(51) 916787675", "04/01/2001", "04/01/2022");
-		Funcionario func5 = new Funcionario(5L, "Guido", "van Rossum", Sexo.MASCULINO,"Rua 42 num 6", 3000.0,  "(44) 916787675", "05/01/2001", "05/01/2022");
+		Funcionario func1 = new Funcionario(1L, "Dennis", "Ritchie", Sexo.MASCULINO,"Rua 2 num 4", 1200.0,  "(49) 916787675", "01/01/2001", "01/01/2022", null);
+		Funcionario func2 = new Funcionario(2L, "Ada","Lovelace", Sexo.FEMININO, "Rua 7 num 32", 2000.0,  "(21) 916787675", "02/01/2001", "02/01/2022", null);
+		Funcionario func3 = new Funcionario(3L, "Linus", "Torvalds", Sexo.MASCULINO,"Rua 1 num 42", 800.0,  "(31) 916787675", "03/01/2001",  "03/01/2022", null);
+		Funcionario func4 = new Funcionario(4L, "Bjarn", "Stroustrup", Sexo.NAO_INFORMADO,"Rua 1 num 43", 500.0,  "(51) 916787675", "04/01/2001", "04/01/2022", null);
+		Funcionario func5 = new Funcionario(5L, "Guido", "van Rossum", Sexo.MASCULINO,"Rua 42 num 6", 3000.0,  "(44) 916787675", "05/01/2001", "05/01/2022", null);
 
 		funcaoRepository.saveAll(Arrays.asList(f1, f2, f3));
 		funcionarioRepository.saveAll(Arrays.asList(func1, func2, func3, func4, func5));
@@ -82,10 +82,10 @@ public class DevagroApplication implements CommandLineRunner {
 
 		funcionarioFazendaRepository.saveAll(Arrays.asList(ff1, ff2, ff3, ff4));
 
-		Grao grao1 = new Grao(1L,"Milho", 120, fazenda1 );
-		Grao grao2 = new Grao(2L,"Soja", 150,  fazenda2 );
-		Grao grao3 = new Grao(3L,"Feijão", 110, fazenda3 );
-		Grao grao4 = new Grao(4L,"Arroz", 5000, fazenda4 );
+		Grao grao1 = new Grao(1L,"Milho", 120, e1);
+		Grao grao2 = new Grao(2L,"Soja", 150,  e2);
+		Grao grao3 = new Grao(3L,"Feijão", 110, e1);
+		Grao grao4 = new Grao(4L,"Arroz", 5000, e1);
 
 		graoRepository.saveAll(Arrays.asList(grao1, grao2, grao3, grao4));
 

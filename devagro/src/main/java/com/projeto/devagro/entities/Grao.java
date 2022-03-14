@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_grao")
@@ -18,23 +17,26 @@ public class Grao implements Serializable {
     private Long id;
     private String nome;
     private Integer tempoMedioColheita;
-    private String nomeEmpresa;
-    private Instant dataUltimaColheita;
 
     @JsonIgnore
     @OneToMany(mappedBy = "grao")
-    private List<Fazenda> fazendas = new ArrayList<>();
+    private Set<Fazenda> fazendas = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "tb_graos_empresas",
+            joinColumns = @JoinColumn(name = "empresa_id"),
+            inverseJoinColumns = @JoinColumn(name = "grao_id"))
+    private Set<Empresa> empresas = new HashSet<>();
 
     public Grao() {
     }
 
-    public Grao(Long id, String nome, Integer tempoColheita, Fazenda fazenda) {
+    public Grao(Long id, String nome, Integer tempoColheita, Empresa empresa) {
         this.id = id;
         this.nome = nome;
         this.tempoMedioColheita = tempoColheita;
-        this.nomeEmpresa = fazenda.getEmpresa().getNome();
-        this.dataUltimaColheita = fazenda.getDataUltimaColheita();
-        fazendas.add(fazenda);
+        empresas.add(empresa);
     }
 
     public Long getId() {
@@ -61,15 +63,7 @@ public class Grao implements Serializable {
         this.tempoMedioColheita = tempoMedioColheita;
     }
 
-    public Instant getdataColheita() {
-        return dataUltimaColheita;
-    }
-
-    public void setdataColheita(Instant dataColheita) {
-        this.dataUltimaColheita = dataUltimaColheita;
-    }
-
-    public List<Fazenda> getFazendas() {
+    public Set<Fazenda> getFazendas() {
         return fazendas;
     }
 
@@ -77,6 +71,14 @@ public class Grao implements Serializable {
 
         fazendas.add(fazenda);
 
+    }
+
+    public void addEmpresa(Empresa empresa){
+        empresas.add(empresa);
+    }
+
+    public Set<Empresa> getEmpresas() {
+        return empresas;
     }
 
     @Override

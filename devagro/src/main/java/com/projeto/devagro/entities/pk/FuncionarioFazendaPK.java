@@ -30,6 +30,7 @@ public class FuncionarioFazendaPK implements Serializable {
         return funcionario;
     }
     public void setFuncionario(Funcionario funcionario) {
+        funcionario.setEmpresa(fazenda.getEmpresa());
         this.funcionario = funcionario;
     }
 

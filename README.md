@@ -71,6 +71,63 @@ API Rest em Java para o controle de produção agrícola com interação entre F
     },
     "estoqueInicialGraos": 1000.0
 }
+```
+## Cadastrando Grão:
+
+- ENDPOINT http://localhost:8080/graos/{id} <<< id da fazenda, através dele se adiciona a empresa
+
+```json
+{
+    "nome": "Grão de Bico",
+    "tempoMedioColheita": 300
+}
+```
+
+### Resposta esperada:
+
+```json 
+{
+    "dados": {
+        "id": 25,   << exemplo id
+        "nome": "Grão de Bico",
+        "tempoMedioColheita": 300,
+        "empresas": [
+            {
+                "id": 1,
+                "nome": "Empresa Java LTDA",
+                "cnpj": "97.753.887/0001-20",
+                "endereco": "Rua 8 num 90"
+            }
+        ]
+    },
+    "erros": []
+}
+```
+
+## Cadastrando Funcionario:
+
+```json
+{
+    "nome": "Allan",
+    "sobrenome": "Ritchie",
+    "sexo": "MASCULINO",
+    "endereco": "Rua 2 num 4",
+    "salario": 1200.0,
+    "telefone": "(49) 916787675",
+    "nascimento": "01/01/2001",
+    "contratacao": "01/01/2022",
+    "funcoes": [
+        {
+            "id": 2,
+            "nome": "Operador de Plantador"
+        }
+    ],
+    "empresa":{
+        "id": 1,
+        "nome": "Empresa Java LTDA",
+        "cnpj": "97.753.887/0001-20",
+        "endereco": "Rua 8 num 90"
+    }
 }
 ```
 

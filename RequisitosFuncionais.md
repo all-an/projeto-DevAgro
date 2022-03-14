@@ -13,12 +13,12 @@
 - [x] - Cada empresa pode ter um ou mais grãos associados.
 - [x] - O CNPJ deve ser validado para estar no formato: XX.XXX.XXX/XXXX-XX.
 
-- [ ] - O cadastro de fazendas deve possibilitar o registro de nome, endereço, qual grão é produzido naquela propriedade, qual o estoque inicial daquele grão naquela fazenda (em kg), e qual empresa é proprietária da fazenda.
+- [x] - O cadastro de fazendas deve possibilitar o registro de nome, endereço, qual grão é produzido naquela propriedade, qual o estoque inicial daquele grão naquela fazenda (em kg), e qual empresa é proprietária da fazenda.
 - [x] - Cada fazenda pode ter apenas um grão associado.
 - [x] - Cada fazenda pode estar associada a apenas uma empresa.
 - [x] - Cada fazenda deve possuir um atributo para guardar a data da última colheita.
 
-- [ ] - O cadastro de grãos deve possibilitar o registro de nome, empresa e tempo médio de colheita, em quantidade de dias. ( Tempo médio é input )
+- [x] - O cadastro de grãos deve possibilitar o registro de nome, empresa e tempo médio de colheita, em quantidade de dias. ( Tempo médio é input )
 
 - [ ] - O cadastro de funcionários deve possibilitar o registro de nome, sobrenome, CPF, endereço, telefone, sexo, data de nascimento, data de contratação, e qual empresa o emprega.
 - [x] - O CPF deve ser validado para estar no formato: XXX.XXX.XXX-XX.

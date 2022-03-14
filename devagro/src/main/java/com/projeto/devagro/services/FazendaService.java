@@ -41,6 +41,7 @@ public class FazendaService {
     }
 
     private void atualizaDados(Fazenda antiga, Fazenda nova) {
+        antiga.setGrao(nova.getGrao());
         antiga.setColheita(nova.getColheita());
         antiga.calculaRetiradaDeGraos(nova.getRetiradaDeGraos());
         antiga.setRetiradaDeGraos(nova.getRetiradaDeGraos());

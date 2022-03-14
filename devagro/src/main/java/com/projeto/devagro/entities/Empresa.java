@@ -7,7 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_empresa")
@@ -28,6 +30,14 @@ public class Empresa implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "empresa")
     private List<Fazenda> fazendas = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "empresa")
+    private List<Funcionario> funcionarios = new ArrayList<>();
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "empresas")
+    private Set<Grao> graos = new HashSet<>();
 
     public Empresa() {
     }
@@ -74,6 +84,14 @@ public class Empresa implements Serializable {
 
     public List<Fazenda> getFazendas() {
         return fazendas;
+    }
+
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(Funcionario funcionario) {
+        this.funcionarios.add(funcionario);
     }
 
     @Override

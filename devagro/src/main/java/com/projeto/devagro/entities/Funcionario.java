@@ -43,10 +43,14 @@ public class Funcionario implements Serializable {
     @OneToMany(mappedBy = "id.funcionario")
     private Set<FuncionarioFazenda> funcionariosDaFazenda = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
+
     public Funcionario() {
     }
 
-    public Funcionario(Long id, String nome, String sobrenome, Sexo sexo, String endereco, Double salario, String telefone, String nascimento, String contratacao) {
+    public Funcionario(Long id, String nome, String sobrenome, Sexo sexo, String endereco, Double salario, String telefone, String nascimento, String contratacao, Empresa empresa) {
         super();
         this.id = id;
         this.nome = nome;
@@ -57,6 +61,7 @@ public class Funcionario implements Serializable {
         this.telefone = telefone;
         this.nascimento = nascimento;
         this.contratacao = contratacao;
+        this.empresa = empresa;
     }
 
     public Long getId() {
@@ -85,6 +90,14 @@ public class Funcionario implements Serializable {
 
     public Sexo getSexo() {
         return Sexo.valueOf(sexo);
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
     public void setSexo(Sexo sexo) {
