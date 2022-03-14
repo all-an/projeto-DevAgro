@@ -151,6 +151,12 @@ telefone inválido:    "telefone": "916787675",
 ENDPOINT:
 /empresas/listaFuncionarios/1  << ID da empresa
 
+## Retornando quantidade de funcionarios de uma empresa:
+
+ENDPOINT:
+  
+/empresas/quantidadeFuncionarios/1 << ID da empresa
+
 ## Outros exemplos de entradas de dados em formato Json e respectivos Endpoints:
 
 - [Exemplos, Json e Endpoints](https://github.com/all-an/dev-agro-devinhouse/blob/main/ExemplosJsonEntradas.md)
