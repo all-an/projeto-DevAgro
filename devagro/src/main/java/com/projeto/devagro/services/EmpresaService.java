@@ -75,6 +75,12 @@ public class EmpresaService {
         return listaFun;
     }
 
+    public Integer quantidadeFuncionarios(Empresa emp){
+        List<Funcionario> listaFun = emp.getFuncionarios();
+        Integer quant = listaFun.size();
+        return quant;
+    }
+
     private void atualizarDados(Empresa atual, Empresa nova) {
         atual.setNome(nova.getNome());
         atual.setCnpj(nova.getCnpj());

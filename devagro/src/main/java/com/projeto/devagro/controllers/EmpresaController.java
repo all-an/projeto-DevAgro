@@ -92,6 +92,16 @@ public class EmpresaController {
         return ResponseEntity.ok().body(lista);
     }
 
+    @GetMapping(value = "/quantidadeFuncionarios/{id}")
+    public ResponseEntity<LinkedHashMap<String, String>> quantidadeFuncionarios(@PathVariable Long id) {
+        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        Empresa emp = service.encontrarPorId(id);
+        Integer quant = service.quantidadeFuncionarios(emp);
+        map.put("Empresa: ", emp.getNome());
+        map.put("Quantidade de Funcionarios: ", quant.toString());
+        return ResponseEntity.ok().body(map);
+    }
+
     @PostMapping
     public ResponseEntity<Response<Empresa>> cadastraEmpresa(@Valid @RequestBody Empresa emp,
                                                              BindingResult result) {

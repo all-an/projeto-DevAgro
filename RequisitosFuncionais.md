@@ -2,7 +2,7 @@
 
 - [x] - O sistema deve ser desenvolvido em Java com Spring.
 - [x] - O sistema deve utilizar banco de dados PostgreSQL.
-- [ ] - O sistema deve seguir o Roteiro da Aplicação logo abaixo.
+- [x] - O sistema deve seguir o Roteiro da Aplicação logo abaixo.
 - [x] - O sistema deve ser uma API que se comunica com outros serviços (por exemplo, front-end web ou Postman) através de requisições HTTP.
 
 - [x] - A API deve possibilitar o cadastro de Empresas, Fazendas, Funcionários, Grãos.
@@ -27,9 +27,9 @@
 - [x] - Nesse primeiro momento, não é necessário fazer o front-end da aplicação, apenas o back-end, ou seja, a API (em Java com Spring Boot) e o banco de dados (PostgreSQL).
 - [x] - Você poderá testar sua aplicação utilizando ferramentas como Postman, Insomnia ou Curl.
 
-- [ ] - Será necessário implementar os endpoints (controller, service, repository) para cadastro de todas essas entidades (models).
+- [x] - Será necessário implementar os endpoints (controller, service, repository) para cadastro de todas essas entidades (models).
 
-- [ ] - Na aplicação devem existir: 
+- [x] - Na aplicação devem existir: 
 - [x] - Um endpoint para retornar a lista completa de empresas cadastradas.
 - [x] - Um endpoint que retorna a lista de fazendas de uma empresa.
 - [x] - Um endpoint que retorna a quantidade de fazendas de uma empresa.
@@ -39,4 +39,4 @@
 - [x] - Um endpoint que retorna a lista de grãos de uma empresa.
 - [x] - Um endpoint que retorna a lista de grãos associados a uma empresa, onde cada elemento da lista deve conter: nome do grão e quantidade em estoque, ordenado de menor para maior quantidade em estoque.
 - [x] - Um endpoint que retorna a lista de funcionários de uma empresa.
-- [ ] - Um endpoint que retorna a quantidade de funcionários de uma empresa.
+- [x] - Um endpoint que retorna a quantidade de funcionários de uma empresa.
