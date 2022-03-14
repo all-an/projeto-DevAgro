@@ -28,15 +28,11 @@ public class Fazenda implements Serializable {
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
-//    @OneToMany(mappedBy = "id.fazenda")
-//    private Set<FuncionarioFazenda> funcionariosFazendas = new HashSet<>();
-
-    //@OneToOne(mappedBy = "fazenda", cascade = CascadeType.ALL)
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "grao_id", referencedColumnName = "id")
     private Grao grao;
 
-    private Double estoqueInicialGraos;
+    private Double estoqueInicialGraos = 0.0;
 
     private Double colheita = 0.0;
 
@@ -53,6 +49,7 @@ public class Fazenda implements Serializable {
         this.dataUltimaColheita = dataUlTimaColheita;
         this.empresa = empresa;
         this.estoqueInicialGraos = estoqueInicialGraos;
+        this.dataPrivistaProximaColheita = dataUlTimaColheita.plusSeconds(grao.getTempoMedioColheita() * 86400);
     }
 
     public Long getId() {
@@ -89,6 +86,10 @@ public class Fazenda implements Serializable {
 
     public Instant getDataPrivistaProximaColheita() {
         return dataPrivistaProximaColheita;
+    }
+
+    public void setDataPrivistaProximaColheita() {
+        this.dataPrivistaProximaColheita = calculaProximaColheita();
     }
 
     public Instant calculaProximaColheita(){
@@ -128,6 +129,7 @@ public class Fazenda implements Serializable {
     public void setColheita(Double colheita) {
         this.colheita = colheita;
         this.estoqueInicialGraos += colheita;
+        this.dataUltimaColheita = Instant.now();
     }
 
     public Double getRetiradaDeGraos(){
@@ -141,18 +143,6 @@ public class Fazenda implements Serializable {
     public void calculaRetiradaDeGraos(Double graosRetirados){
         this.estoqueInicialGraos -= graosRetirados;
     }
-
-//    public Set<FuncionarioFazenda> getFuncionariosFazendas() {
-//        return funcionariosFazendas;
-//    }
-//
-//    public Double getTotalSalarios() {
-//        double soma = 0.0;
-//        for (FuncionarioFazenda x : funcionariosFazendas) {
-//            soma += x.getSubTotal();
-//        }
-//        return soma;
-//    }
 
     @Override
     public int hashCode() {
