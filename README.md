@@ -18,7 +18,7 @@ API Rest em Java para o controle de produção agrícola com interação entre F
 - IDE IntelliJ IDEA Community Edition 2021.2.3 ou superior
 
 ## Requisitos Funcionais:
-- [Checklist / Roadmap dos Requisistos Funcionais do sistema](https://github.com/all-an/DEV-Agro/blob/main/RequisitosFuncionais.md)
+- [Checklist / Roadmap dos Requisistos Funcionais do sistema](https://github.com/all-an/projeto-DevAgro/blob/main/RequisitosFuncionais.md)
 
 ## Cadastrando Empresa:
 ```json
@@ -159,7 +159,7 @@ ENDPOINT:
 
 ## Outros exemplos de entradas de dados em formato Json e respectivos Endpoints:
 
-- [Exemplos, Json e Endpoints](https://github.com/all-an/dev-agro-devinhouse/blob/main/ExemplosJsonEntradas.md)
+- [Exemplos, Json e Endpoints](https://github.com/all-an/projeto-DevAgro/blob/main/ExemplosJsonEntradas.md)
 
 ## Autor:
 - [Allan Pereira Abrahão](https://www.linkedin.com/in/allan-pereira-abrahao/)
