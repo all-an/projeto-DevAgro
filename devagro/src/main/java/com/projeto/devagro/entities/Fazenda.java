@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "tb_fazenda")
@@ -30,8 +28,8 @@ public class Fazenda implements Serializable {
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
-    @OneToMany(mappedBy = "id.fazenda")
-    private Set<FuncionarioFazenda> funcionariosFazendas = new HashSet<>();
+//    @OneToMany(mappedBy = "id.fazenda")
+//    private Set<FuncionarioFazenda> funcionariosFazendas = new HashSet<>();
 
     //@OneToOne(mappedBy = "fazenda", cascade = CascadeType.ALL)
     @OneToOne(cascade = CascadeType.MERGE)
@@ -144,17 +142,17 @@ public class Fazenda implements Serializable {
         this.estoqueInicialGraos -= graosRetirados;
     }
 
-    public Set<FuncionarioFazenda> getFuncionariosFazendas() {
-        return funcionariosFazendas;
-    }
-
-    public Double getTotalSalarios() {
-        double soma = 0.0;
-        for (FuncionarioFazenda x : funcionariosFazendas) {
-            soma += x.getSubTotal();
-        }
-        return soma;
-    }
+//    public Set<FuncionarioFazenda> getFuncionariosFazendas() {
+//        return funcionariosFazendas;
+//    }
+//
+//    public Double getTotalSalarios() {
+//        double soma = 0.0;
+//        for (FuncionarioFazenda x : funcionariosFazendas) {
+//            soma += x.getSubTotal();
+//        }
+//        return soma;
+//    }
 
     @Override
     public int hashCode() {

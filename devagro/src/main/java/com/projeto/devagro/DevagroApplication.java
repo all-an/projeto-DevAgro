@@ -27,9 +27,6 @@ public class DevagroApplication implements CommandLineRunner {
 	private FuncionarioRepository funcionarioRepository;
 
 	@Autowired
-	private FuncionarioFazendaRepository funcionarioFazendaRepository;
-
-	@Autowired
 	private GraoRepository graoRepository;
 
 
@@ -53,7 +50,7 @@ public class DevagroApplication implements CommandLineRunner {
 		Funcionario func5 = new Funcionario(5L, "Guido", "van Rossum", Sexo.MASCULINO,"Rua 42 num 6", 3000.0,  "(44) 916787675", "05/01/2001", "05/01/2022", null);
 
 		funcaoRepository.saveAll(Arrays.asList(f1, f2, f3));
-		funcionarioRepository.saveAll(Arrays.asList(func1, func2, func3, func4, func5));
+
 
 		func1.getFuncoes().add(f2);
 		func2.getFuncoes().add(f1);
@@ -67,6 +64,14 @@ public class DevagroApplication implements CommandLineRunner {
 		Empresa e1 = new Empresa(1L, "Empresa Java LTDA", "97.753.887/0001-20", "Rua 8 num 90");
 		Empresa e2 = new Empresa(2L, "Empresa Python SA", "36.890.964/0001-08", "Rua 4 num 2");
 
+		empresaRepository.saveAll(Arrays.asList(e1, e2));
+
+		func1.setEmpresa(e1);
+		func2.setEmpresa(e1);
+		func3.setEmpresa(e1);
+
+		funcionarioRepository.saveAll(Arrays.asList(func1, func2, func3, func4, func5));
+
 		Fazenda fazenda1 = new Fazenda(1L, "Fazenda Arrocha","Rua 1 num 3", null,  Instant.parse("2022-03-11T19:53:07Z"), e1, 1000.00);
 		Fazenda fazenda2 = new Fazenda(2L, "Fazenda DevInHouse", "Rua 2 num 2",null, Instant.parse("2022-03-11T03:42:10Z"), e1, 500.00);
 		Fazenda fazenda3 = new Fazenda(3L, "Fazenda Ai Papai", "Rua 3 num 1", null, Instant.parse("2022-03-11T15:21:22Z"), e1, 3000.00);
@@ -74,13 +79,6 @@ public class DevagroApplication implements CommandLineRunner {
 
 		empresaRepository.saveAll(Arrays.asList(e1, e2));
 		fazendaRepository.saveAll(Arrays.asList(fazenda1, fazenda2, fazenda3, fazenda4));
-
-		FuncionarioFazenda ff1 = new FuncionarioFazenda(fazenda1, func1, 10, func1.getSalario());
-		FuncionarioFazenda ff2 = new FuncionarioFazenda(fazenda1, func3, 7, func3.getSalario());
-		FuncionarioFazenda ff3 = new FuncionarioFazenda(fazenda2, func3, 2, func3.getSalario());
-		FuncionarioFazenda ff4 = new FuncionarioFazenda(fazenda3, func5, 30, func5.getSalario());
-
-		funcionarioFazendaRepository.saveAll(Arrays.asList(ff1, ff2, ff3, ff4));
 
 		Grao grao1 = new Grao(1L,"Milho", 120, e1);
 		Grao grao2 = new Grao(2L,"Soja", 150,  e2);

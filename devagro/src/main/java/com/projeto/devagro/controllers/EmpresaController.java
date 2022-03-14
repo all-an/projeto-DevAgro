@@ -1,8 +1,6 @@
 package com.projeto.devagro.controllers;
 
-import com.projeto.devagro.entities.Empresa;
-import com.projeto.devagro.entities.Fazenda;
-import com.projeto.devagro.entities.Grao;
+import com.projeto.devagro.entities.*;
 import com.projeto.devagro.response.Response;
 import com.projeto.devagro.services.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 
 @RestController
@@ -85,8 +80,15 @@ public class EmpresaController {
     //https://howtodoinjava.com/java/sort/java-sort-map-by-values/
     @GetMapping(value = "/estoquesGraos/{id}")
     public ResponseEntity<LinkedHashMap<String, Double>> estoqueDeGraosOrdemCrescente(@PathVariable Long id) {
-        Empresa obj = service.encontrarPorId(id);
-        LinkedHashMap<String, Double> lista = service.graosOrdemCrescente(obj);
+        Empresa emp = service.encontrarPorId(id);
+        LinkedHashMap<String, Double> lista = service.graosOrdemCrescente(emp);
+        return ResponseEntity.ok().body(lista);
+    }
+
+    @GetMapping(value = "/listaFuncionarios/{id}")
+    public ResponseEntity<List<Funcionario>> listaFuncionarios(@PathVariable Long id) {
+        Empresa emp = service.encontrarPorId(id);
+        List<Funcionario> lista = service.listaTodosFuncionarios(emp);
         return ResponseEntity.ok().body(lista);
     }
 

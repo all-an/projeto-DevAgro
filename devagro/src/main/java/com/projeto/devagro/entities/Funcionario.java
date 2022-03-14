@@ -2,7 +2,6 @@
 package com.projeto.devagro.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projeto.devagro.entities.enums.Sexo;
 
 import javax.persistence.*;
@@ -40,8 +39,8 @@ public class Funcionario implements Serializable {
     @JoinTable(name = "tb_funcionario_funcao", joinColumns = @JoinColumn(name = "funcionario_id"), inverseJoinColumns = @JoinColumn(name = "funcao_id"))
     private Set<Funcao> funcoes = new HashSet<>();
 
-    @OneToMany(mappedBy = "id.funcionario")
-    private Set<FuncionarioFazenda> funcionariosDaFazenda = new HashSet<>();
+//    @OneToMany(mappedBy = "id.funcionario")
+//    private Set<FuncionarioFazenda> funcionariosDaFazenda = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")
@@ -150,14 +149,14 @@ public class Funcionario implements Serializable {
         this.contratacao = contratacao;
     }
 
-    @JsonIgnore
-    public Set<Fazenda> getFazendas() {
-        Set<Fazenda> set = new HashSet<>();
-        for (FuncionarioFazenda x : funcionariosDaFazenda) {
-            set.add(x.getFazenda());
-        }
-        return set;
-    }
+//    @JsonIgnore
+//    public Set<Fazenda> getFazendas() {
+//        Set<Fazenda> set = new HashSet<>();
+//        for (FuncionarioFazenda x : funcionariosDaFazenda) {
+//            set.add(x.getFazenda());
+//        }
+//        return set;
+//    }
 
     @Override
     public int hashCode() {

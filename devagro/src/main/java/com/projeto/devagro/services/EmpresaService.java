@@ -2,6 +2,7 @@ package com.projeto.devagro.services;
 
 import com.projeto.devagro.entities.Empresa;
 import com.projeto.devagro.entities.Fazenda;
+import com.projeto.devagro.entities.Funcionario;
 import com.projeto.devagro.repositories.EmpresaRepository;
 import com.projeto.devagro.services.exceptions.BancoDeDadosException;
 import com.projeto.devagro.services.exceptions.RecursoNaoEncontradoException;
@@ -69,11 +70,18 @@ public class EmpresaService {
         return retornoOrdenado;
     }
 
+    public List<Funcionario> listaTodosFuncionarios(Empresa emp){
+        List<Funcionario> listaFun = emp.getFuncionarios();
+        return listaFun;
+    }
+
     private void atualizarDados(Empresa atual, Empresa nova) {
         atual.setNome(nova.getNome());
         atual.setCnpj(nova.getCnpj());
         atual.setEndereco(nova.getEndereco());
     }
+
+
 
 
 }

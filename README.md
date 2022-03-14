@@ -131,6 +131,26 @@ API Rest em Java para o controle de produção agrícola com interação entre F
 }
 ```
 
+### Cadastro funcionário inválido:
+
+telefone inválido:    "telefone": "916787675",
+
+#### Resposta esperada:
+
+```json
+{
+    "dados": null,
+    "erros": [
+        "Deve ser um formato válido (XX) XXXXXXXXX"
+    ]
+}
+```
+
+## Retornando todos os funcionarios de uma empresa:
+
+ENDPOINT:
+/empresas/listaFuncionarios/1  << ID da empresa
+
 ## Outros exemplos de entradas de dados em formato Json e respectivos Endpoints:
 
 - [Exemplos, Json e Endpoints](https://github.com/all-an/dev-agro-devinhouse/blob/main/ExemplosJsonEntradas.md)

@@ -20,7 +20,7 @@
 
 - [x] - O cadastro de grãos deve possibilitar o registro de nome, empresa e tempo médio de colheita, em quantidade de dias. ( Tempo médio é input )
 
-- [ ] - O cadastro de funcionários deve possibilitar o registro de nome, sobrenome, CPF, endereço, telefone, sexo, data de nascimento, data de contratação, e qual empresa o emprega.
+- [x] - O cadastro de funcionários deve possibilitar o registro de nome, sobrenome, CPF, endereço, telefone, sexo, data de nascimento, data de contratação, e qual empresa o emprega.
 - [x] - O CPF deve ser validado para estar no formato: XXX.XXX.XXX-XX.
 - [x] - O telefone deve ser validado para estar no formato: (XX) XXXXXXXXX.
 
@@ -38,5 +38,5 @@
 - [x] - Um endpoint para registrar retirada de grãos de uma fazenda, que diminui o estoque de grãos daquela fazenda.
 - [x] - Um endpoint que retorna a lista de grãos de uma empresa.
 - [x] - Um endpoint que retorna a lista de grãos associados a uma empresa, onde cada elemento da lista deve conter: nome do grão e quantidade em estoque, ordenado de menor para maior quantidade em estoque.
-- [ ] - Um endpoint que retorna a lista de funcionários de uma empresa.
+- [x] - Um endpoint que retorna a lista de funcionários de uma empresa.
 - [ ] - Um endpoint que retorna a quantidade de funcionários de uma empresa.
