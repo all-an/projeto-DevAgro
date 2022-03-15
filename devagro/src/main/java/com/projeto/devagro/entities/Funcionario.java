@@ -39,9 +39,6 @@ public class Funcionario implements Serializable {
     @JoinTable(name = "tb_funcionario_funcao", joinColumns = @JoinColumn(name = "funcionario_id"), inverseJoinColumns = @JoinColumn(name = "funcao_id"))
     private Set<Funcao> funcoes = new HashSet<>();
 
-//    @OneToMany(mappedBy = "id.funcionario")
-//    private Set<FuncionarioFazenda> funcionariosDaFazenda = new HashSet<>();
-
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
@@ -148,15 +145,6 @@ public class Funcionario implements Serializable {
     public void setContratacao(String contratacao) {
         this.contratacao = contratacao;
     }
-
-//    @JsonIgnore
-//    public Set<Fazenda> getFazendas() {
-//        Set<Fazenda> set = new HashSet<>();
-//        for (FuncionarioFazenda x : funcionariosDaFazenda) {
-//            set.add(x.getFazenda());
-//        }
-//        return set;
-//    }
 
     @Override
     public int hashCode() {

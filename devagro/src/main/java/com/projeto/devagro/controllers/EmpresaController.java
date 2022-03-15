@@ -67,11 +67,15 @@ public class EmpresaController {
 
     @GetMapping(value = "/graos/{id}")
     public ResponseEntity<List<Grao>> retornaListaGraosEmpresa(@PathVariable Long id) {
-        Empresa obj = service.encontrarPorId(id);
-        List<Fazenda> listaFazendas = obj.getFazendas();
+        Empresa emp = service.encontrarPorId(id);
+        List<Fazenda> listaFazendas = emp.getFazendas();
+        List<Grao> graosAvulsos = emp.getGraos().stream().toList();
         List<Grao> listaGraos = new ArrayList<>();
         for(Fazenda f : listaFazendas){
             listaGraos.add(f.getGrao());
+        }
+        for(Grao g : graosAvulsos){
+            listaGraos.add(g);
         }
         return ResponseEntity.ok().body(listaGraos);
     }

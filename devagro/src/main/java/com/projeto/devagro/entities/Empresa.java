@@ -94,6 +94,14 @@ public class Empresa implements Serializable {
         this.funcionarios.add(funcionario);
     }
 
+    public Set<Grao> getGraos() {
+        return graos;
+    }
+
+    public void addGraos(Grao grao) {
+        this.graos.add(grao);
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

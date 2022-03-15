@@ -44,11 +44,11 @@ public class EmpresaService {
         }
     }
 
-    public Empresa atualizar(Long id, Empresa obj) {
+    public Empresa atualizar(Long id, Empresa nova) {
         try {
-            Empresa entity = repository.getById(id);
-            atualizarDados(entity, obj);
-            return repository.save(entity);
+            Empresa antiga = repository.getById(id);
+            atualizarDados(antiga, nova);
+            return repository.save(antiga);
         } catch (EntityNotFoundException e) {
             throw new RecursoNaoEncontradoException(id); //404Not Found
         }

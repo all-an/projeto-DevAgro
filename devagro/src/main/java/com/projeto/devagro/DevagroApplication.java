@@ -72,27 +72,20 @@ public class DevagroApplication implements CommandLineRunner {
 
 		funcionarioRepository.saveAll(Arrays.asList(func1, func2, func3, func4, func5));
 
-		Grao grao1 = new Grao(1L,"Milho", 120, e1);
-		Grao grao2 = new Grao(2L,"Soja", 150,  e2);
-		Grao grao3 = new Grao(3L,"Feijão", 110, e1);
-		Grao grao4 = new Grao(4L,"Arroz", 5000, e1);
+		Grao milho = new Grao(1L,"Milho", 120, e1);
+		Grao soja = new Grao(2L,"Soja", 150,  e1);
+		Grao feijao = new Grao(3L,"Feijão", 110, e2);
+		Grao arroz = new Grao(4L,"Arroz", 5000, e2);
 
-		graoRepository.saveAll(Arrays.asList(grao1, grao2, grao3, grao4));
+		graoRepository.saveAll(Arrays.asList(milho, soja, feijao, arroz));
 
-		Fazenda fazenda1 = new Fazenda(1L, "Fazenda Arrocha","Rua 1 num 3", grao1,  Instant.parse("2022-03-11T19:53:07Z"), e1, 1000.00);
-		Fazenda fazenda2 = new Fazenda(2L, "Fazenda DevInHouse", "Rua 2 num 2",grao2, Instant.parse("2022-03-11T03:42:10Z"), e1, 500.00);
-		Fazenda fazenda3 = new Fazenda(3L, "Fazenda Ai Papai", "Rua 3 num 1", grao3, Instant.parse("2022-03-11T15:21:22Z"), e1, 3000.00);
-		Fazenda fazenda4 = new Fazenda(4L, "Fazenda Cavalo", "Rua 8 num 8", grao4, Instant.parse("2022-03-11T15:21:22Z"), e1, 3000.00);
+		Fazenda fazenda1 = new Fazenda(1L, "Fazenda Arrocha","Rua 1 num 3", feijao,  Instant.parse("2022-03-11T19:53:07Z"), e1, 1000.00);
+		Fazenda fazenda2 = new Fazenda(2L, "Fazenda DevInHouse", "Rua 2 num 2",milho, Instant.parse("2022-03-11T03:42:10Z"), e2, 500.00);
+		Fazenda fazenda3 = new Fazenda(3L, "Fazenda Ai Papai", "Rua 3 num 1", soja, Instant.parse("2022-03-11T15:21:22Z"), e2, 3000.00);
+		Fazenda fazenda4 = new Fazenda(4L, "Fazenda Cavalo", "Rua 8 num 8", arroz, Instant.parse("2022-03-11T15:21:22Z"), e2, 3000.00);
 
 		empresaRepository.saveAll(Arrays.asList(e1, e2));
 		fazendaRepository.saveAll(Arrays.asList(fazenda1, fazenda2, fazenda3, fazenda4));
-
-
-
-		fazenda1.setGrao(grao1);
-		fazenda2.setGrao(grao2);
-		fazenda3.setGrao(grao3);
-		fazenda4.setGrao(grao4);
 
 		fazendaRepository.saveAll(Arrays.asList(fazenda1, fazenda2, fazenda3, fazenda4));
 

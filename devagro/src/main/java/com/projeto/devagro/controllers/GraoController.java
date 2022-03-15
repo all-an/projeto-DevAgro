@@ -1,6 +1,5 @@
 package com.projeto.devagro.controllers;
 
-import com.projeto.devagro.entities.Empresa;
 import com.projeto.devagro.entities.Grao;
 import com.projeto.devagro.response.Response;
 import com.projeto.devagro.services.FazendaService;
@@ -36,9 +35,8 @@ public class GraoController {
         return ResponseEntity.ok().body(grao);
     }
 
-    @PostMapping(value = "/{id}")
-    public ResponseEntity<Response<Grao>> cadastraGrao(@Valid @PathVariable Long id ,@RequestBody Grao novo,
-                                                             BindingResult result) {
+    @PostMapping
+    public ResponseEntity<Response<Grao>> cadastraGrao(@Valid @RequestBody Grao novo, BindingResult result) {
         Response<Grao> response = new Response<>();
 
         if (result.hasErrors()) {
@@ -46,9 +44,7 @@ public class GraoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
 
-        Empresa empresa = fazendaService.encontrarPorId(id).getEmpresa();
-        Grao grao = new Grao(null, novo.getNome(), novo.getTempoMedioColheita(), empresa);
-        graoService.inserir(grao);
+        Grao grao = graoService.adicionaGraoNoBancoENaEmpresa(novo);
 
         response.setDados(grao);
 
