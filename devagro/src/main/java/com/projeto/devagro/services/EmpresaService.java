@@ -3,6 +3,7 @@ package com.projeto.devagro.services;
 import com.projeto.devagro.entities.Empresa;
 import com.projeto.devagro.entities.Fazenda;
 import com.projeto.devagro.entities.Funcionario;
+import com.projeto.devagro.entities.Grao;
 import com.projeto.devagro.repositories.EmpresaRepository;
 import com.projeto.devagro.services.exceptions.BancoDeDadosException;
 import com.projeto.devagro.services.exceptions.RecursoNaoEncontradoException;
@@ -76,7 +77,32 @@ public class EmpresaService {
             retorno.add(map);
         }
         return retorno;
-    };
+    }
+
+    public List<Grao> listaGraosEmpresa(Long id){
+        Empresa emp = repository.findById(id).get();
+        List<Fazenda> listaFazendas = emp.getFazendas();
+        List<Grao> graosAvulsos = emp.getGraos().stream().toList();
+        List<Grao> listaGraos = new ArrayList<>();
+        for(Fazenda f : listaFazendas){
+            listaGraos.add(f.getGrao());
+        }
+        for(Grao g : graosAvulsos){
+            listaGraos.add(g);
+        }
+        return listaGraos;
+    }
+
+    public LinkedHashMap<String, String> todosFuncionariosEmpresa(Long id){
+        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        Empresa emp = encontrarPorId(id);
+        Integer quant = quantidadeFuncionarios(emp);
+        map.put("Empresa: ", emp.getNome());
+        map.put("Quantidade de Funcionarios: ", quant.toString());
+        return map;
+    }
+
+
 
     //fonte onde encontrei o retorno em ordem crescente
     //https://howtodoinjava.com/java/sort/java-sort-map-by-values/

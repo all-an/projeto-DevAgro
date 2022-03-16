@@ -28,14 +28,14 @@ public class EmpresaController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Empresa> encontraEmpresaPorId(@PathVariable Long id) {
-        Empresa obj = service.encontrarPorId(id);
-        return ResponseEntity.ok().body(obj);
+        Empresa emp = service.encontrarPorId(id);
+        return ResponseEntity.ok().body(emp);
     }
 
     @GetMapping(value = "/fazendas/{id}")
     public ResponseEntity<List<Fazenda>> encontraFazendasPorEmpresaId(@PathVariable Long id) {
-        Empresa obj = service.encontrarPorId(id);
-        List<Fazenda> lista = obj.getFazendas();
+        Empresa emp = service.encontrarPorId(id);
+        List<Fazenda> lista = emp.getFazendas();
         return ResponseEntity.ok().body(lista);
     }
 
@@ -53,16 +53,7 @@ public class EmpresaController {
 
     @GetMapping(value = "/graos/{id}")
     public ResponseEntity<List<Grao>> retornaListaGraosEmpresa(@PathVariable Long id) {
-        Empresa emp = service.encontrarPorId(id);
-        List<Fazenda> listaFazendas = emp.getFazendas();
-        List<Grao> graosAvulsos = emp.getGraos().stream().toList();
-        List<Grao> listaGraos = new ArrayList<>();
-        for(Fazenda f : listaFazendas){
-            listaGraos.add(f.getGrao());
-        }
-        for(Grao g : graosAvulsos){
-            listaGraos.add(g);
-        }
+        List<Grao> listaGraos = service.listaGraosEmpresa(id);
         return ResponseEntity.ok().body(listaGraos);
     }
 
@@ -84,28 +75,19 @@ public class EmpresaController {
 
     @GetMapping(value = "/quantidadeFuncionarios/{id}")
     public ResponseEntity<LinkedHashMap<String, String>> quantidadeFuncionarios(@PathVariable Long id) {
-        LinkedHashMap<String, String> map = new LinkedHashMap<>();
-        Empresa emp = service.encontrarPorId(id);
-        Integer quant = service.quantidadeFuncionarios(emp);
-        map.put("Empresa: ", emp.getNome());
-        map.put("Quantidade de Funcionarios: ", quant.toString());
-        return ResponseEntity.ok().body(map);
+        LinkedHashMap<String, String> map1 = service.todosFuncionariosEmpresa(id);
+        return ResponseEntity.ok().body(map1);
     }
 
     @PostMapping
-    public ResponseEntity<Response<Empresa>> cadastraEmpresa(@Valid @RequestBody Empresa emp,
-                                                             BindingResult result) {
+    public ResponseEntity<Response<Empresa>> cadastraEmpresa(@Valid @RequestBody Empresa emp, BindingResult result) {
         Response<Empresa> response = new Response<>();
-
         if (result.hasErrors()) {
             result.getAllErrors().forEach(e -> response.getErros().add(e.getDefaultMessage()));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
-
         Empresa empresa = service.inserir(emp);
-
         response.setDados(empresa);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

@@ -26,8 +26,8 @@ public class FazendaService {
     }
 
     public Fazenda encontrarPorId(Long id) {
-        Optional<Fazenda> obj = repository.findById(id);
-        return obj.get();
+        Optional<Fazenda> fazenda = repository.findById(id);
+        return fazenda.orElseThrow(() -> new RecursoNaoEncontradoException(id));
     }
 
     public Fazenda atualiza(Long id, Fazenda nova) {

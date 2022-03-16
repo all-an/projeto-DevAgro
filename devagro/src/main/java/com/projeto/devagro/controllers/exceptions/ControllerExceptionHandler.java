@@ -11,21 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 
 @ControllerAdvice
-public class ManipuladorDeControllerException {
+public class ControllerExceptionHandler {
 
     @ExceptionHandler(RecursoNaoEncontradoException.class)
-    public ResponseEntity<ErroPadrao> recursoNaoEncontrado(RecursoNaoEncontradoException e, HttpServletRequest request) {
+    public ResponseEntity<StandardError> recursoNaoEncontrado(RecursoNaoEncontradoException e, HttpServletRequest request) {
         String erro = "Dados não encontrados";
         HttpStatus status = HttpStatus.NOT_FOUND;
-        ErroPadrao err = new ErroPadrao(Instant.now(), status.value(), erro, e.getMessage(), request.getRequestURI());
+        StandardError err = new StandardError(Instant.now(), status.value(), erro, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 
     @ExceptionHandler(BancoDeDadosException.class)
-    public ResponseEntity<ErroPadrao> bancoDeDados(BancoDeDadosException e, HttpServletRequest request) {
+    public ResponseEntity<StandardError> bancoDeDados(BancoDeDadosException e, HttpServletRequest request) {
         String erro = "Erro de Banco de Dados";
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        ErroPadrao err = new ErroPadrao(Instant.now(), status.value(), erro, e.getMessage(), request.getRequestURI());
+        StandardError err = new StandardError(Instant.now(), status.value(), erro, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 }

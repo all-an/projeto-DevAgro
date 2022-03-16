@@ -47,8 +47,8 @@ public class FazendaController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Fazenda> encontrarPorId(@PathVariable Long id) {
-        Fazenda obj = service.encontrarPorId(id);
-        return ResponseEntity.ok().body(obj);
+        Fazenda fazen = service.encontrarPorId(id);
+        return ResponseEntity.ok().body(fazen);
     }
 
     @PutMapping(value = "/colheita/{id}")
