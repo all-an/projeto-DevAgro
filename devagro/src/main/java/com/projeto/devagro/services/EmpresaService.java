@@ -54,6 +54,30 @@ public class EmpresaService {
         }
     }
 
+    public HashMap<String, String> retornaFazendasDeEmpresa(Long id){
+        Empresa obj = repository.findById(id).get();
+        List<Fazenda> lista = obj.getFazendas();
+        Integer total = lista.size();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("Empresa: ", obj.getNome());
+        map.put("Quantidade de Fazendas", total.toString());
+        return map;
+    }
+
+    public List<LinkedHashMap<String, String>> retornaFazendasProximasColheitas(Long id){
+        Empresa obj = repository.findById(id).get();
+        List<Fazenda> lista = obj.getFazendas();
+        List<LinkedHashMap<String, String>> retorno = new ArrayList<>();
+        for(Fazenda f : lista){
+            LinkedHashMap<String, String> map = new LinkedHashMap<>();
+            map.put("Id da Fazenda: ", f.getId().toString());
+            map.put("Nome da Fazenda: ", f.getNome());
+            map.put("Data Próxima Colheita: ", f.calculaProximaColheita().toString());
+            retorno.add(map);
+        }
+        return retorno;
+    };
+
     //fonte onde encontrei o retorno em ordem crescente
     //https://howtodoinjava.com/java/sort/java-sort-map-by-values/
     public LinkedHashMap<String, Double> graosOrdemCrescente(Empresa empresa){

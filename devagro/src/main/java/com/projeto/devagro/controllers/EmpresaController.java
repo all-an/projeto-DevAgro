@@ -41,27 +41,13 @@ public class EmpresaController {
 
     @GetMapping(value = "/quantidadeFazendas/{id}")
     public ResponseEntity<HashMap<String, String>> quantidadeFazendasDeUmaEmpresa(@PathVariable Long id) {
-        Empresa obj = service.encontrarPorId(id);
-        List<Fazenda> lista = obj.getFazendas();
-        Integer total = lista.size();
-        HashMap<String, String> map = new HashMap<>();
-        map.put("Empresa: ", obj.getNome());
-        map.put("Quantidade de Fazendas", total.toString());
+        HashMap<String, String> map = service.retornaFazendasDeEmpresa(id);
         return ResponseEntity.ok().body(map);
     }
 
     @GetMapping(value = "/proximasColheitas/{id}")
     public ResponseEntity<List<LinkedHashMap<String, String>>> fazendasDataPrevistaProximaColheita(@PathVariable Long id) {
-        Empresa obj = service.encontrarPorId(id);
-        List<Fazenda> lista = obj.getFazendas();
-        List<LinkedHashMap<String, String>> retorno = new ArrayList<>();
-        for(Fazenda f : lista){
-            LinkedHashMap<String, String> map = new LinkedHashMap<>();
-            map.put("Id da Fazenda: ", f.getId().toString());
-            map.put("Nome da Fazenda: ", f.getNome());
-            map.put("Data Próxima Colheita: ", f.calculaProximaColheita().toString());
-            retorno.add(map);
-        }
+        List<LinkedHashMap<String, String>> retorno = service.retornaFazendasProximasColheitas(id);
         return ResponseEntity.ok().body(retorno);
     }
 
