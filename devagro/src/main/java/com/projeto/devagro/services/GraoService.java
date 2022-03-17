@@ -32,10 +32,11 @@ public class GraoService {
     }
 
     public Grao adicionaGraoNoBancoENaEmpresa(Grao grao){
-        Empresa empresa = grao.getEmpresas().stream().findFirst().get();
-        Grao g = new Grao(null, grao.getNome(), grao.getTempoMedioColheita(), empresa);
-        empresa.addGraos(g);
+//        Empresa empresa = grao.getEmpresas().stream().findFirst().get();
+        Empresa empresa = grao.getEmpresa();
+//        Grao g = new Grao(null, grao.getNome(), grao.getTempoMedioColheita(), empresa);
+        empresa.addGraos(grao);
         empresaService.atualizar(empresa.getId(), empresa);
-        return inserir(g);
+        return inserir(grao);
     }
 }

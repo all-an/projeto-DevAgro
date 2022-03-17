@@ -36,7 +36,7 @@ public class Empresa implements Serializable {
     private List<Funcionario> funcionarios = new ArrayList<>();
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "empresas")
+    @ManyToMany(mappedBy = "empresa")
     private Set<Grao> graos = new HashSet<>();
 
     public Empresa() {

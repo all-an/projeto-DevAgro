@@ -3,13 +3,12 @@ package com.projeto.devagro.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
 @Entity
 @Table(name = "tb_fazenda")
-public class Fazenda implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Fazenda {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +27,7 @@ public class Fazenda implements Serializable {
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
+    @NotNull(message = "Deve ter um grão e ser da empresa que possui esta fazenda")
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "grao_id", referencedColumnName = "id")
     private Grao grao;
@@ -41,13 +41,14 @@ public class Fazenda implements Serializable {
     public Fazenda() {
     }
 
-    public Fazenda(Long id, String nome, String endereco, Grao grao, Instant dataUlTimaColheita, Empresa empresa, Double estoqueInicialGraos) {
+    public Fazenda(Long id, String nome, String endereco, Empresa empresa, Instant dataUlTimaColheita, Grao grao, Double estoqueInicialGraos) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
-        this.grao = grao;
-        this.dataUltimaColheita = dataUlTimaColheita;
         this.empresa = empresa;
+        this.dataUltimaColheita = dataUlTimaColheita;
+        this.grao = grao;
+        empresa.addGraos(grao);
         this.estoqueInicialGraos = estoqueInicialGraos;
         this.dataPrivistaProximaColheita = dataUlTimaColheita.plusSeconds(grao.getTempoMedioColheita() * 86400);
     }

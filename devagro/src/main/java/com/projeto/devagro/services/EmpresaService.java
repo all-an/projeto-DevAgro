@@ -81,12 +81,8 @@ public class EmpresaService {
 
     public List<Grao> listaGraosEmpresa(Long id){
         Empresa emp = repository.findById(id).get();
-        List<Fazenda> listaFazendas = emp.getFazendas();
         List<Grao> graosAvulsos = emp.getGraos().stream().toList();
         List<Grao> listaGraos = new ArrayList<>();
-        for(Fazenda f : listaFazendas){
-            listaGraos.add(f.getGrao());
-        }
         for(Grao g : graosAvulsos){
             listaGraos.add(g);
         }

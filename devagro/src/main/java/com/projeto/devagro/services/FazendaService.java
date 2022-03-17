@@ -1,5 +1,6 @@
 package com.projeto.devagro.services;
 
+import com.projeto.devagro.entities.Empresa;
 import com.projeto.devagro.entities.Fazenda;
 import com.projeto.devagro.repositories.FazendaRepository;
 import com.projeto.devagro.services.exceptions.RecursoNaoEncontradoException;
@@ -17,12 +18,19 @@ public class FazendaService {
     @Autowired
     private FazendaRepository repository;
 
+    @Autowired
+    private EmpresaService empresaService;
+
     public List<Fazenda> encontrarTodos() {
         return repository.findAll();
     }
 
     public Fazenda inserir(Fazenda fazenda) {
-        return repository.save(fazenda);
+        Empresa empresa = empresaService.encontrarPorId(fazenda.getEmpresa().getId());
+        if(empresa.getGraos().contains(fazenda.getGrao()))
+            return repository.save(fazenda);
+        else
+            return repository.save(new Fazenda());
     }
 
     public Fazenda encontrarPorId(Long id) {

@@ -58,16 +58,16 @@ API Rest em Java para o controle de produção agrícola com interação entre F
 {
     "nome": "Fazenda NOVA",
     "endereco": "Rua 111 num 9999",
-    "grao": {
-        "id": 1,
-        "nome": "Milho"
-    },
-    "dataUltimaColheita": "2022-03-11T19:53:07Z",
     "empresa": {
         "id": 1,
         "nome": "Empresa Java LTDA",
         "cnpj": "97.753.887/0001-20",
         "endereco": "Rua 8 num 90"
+    },
+    "dataUltimaColheita": "2022-03-11T19:53:07Z",
+     "grao": {
+        "id": 3,
+        "nome": "Feijão"
     },
     "estoqueInicialGraos": 1000.0
 }
@@ -80,14 +80,14 @@ API Rest em Java para o controle de produção agrícola com interação entre F
 {
     "nome": "Grão de Bico",
     "tempoMedioColheita": 300,
-    "empresas": [
+    "empresa": 
         {
             "id": 1,
             "nome": "Empresa Java LTDA",
             "cnpj": "97.753.887/0001-20",
             "endereco": "Rua 8 num 90"
         }
-    ]
+    
 }
 ```
 
@@ -99,14 +99,14 @@ API Rest em Java para o controle de produção agrícola com interação entre F
         "id": 25,   << exemplo id
         "nome": "Grão de Bico",
         "tempoMedioColheita": 300,
-        "empresas": [
+        "empresas": 
             {
                 "id": 1,
                 "nome": "Empresa Java LTDA",
                 "cnpj": "97.753.887/0001-20",
                 "endereco": "Rua 8 num 90"
             }
-        ]
+        
     },
     "erros": []
 }

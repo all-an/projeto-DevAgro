@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.projeto.devagro.entities.enums.Sexo;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -39,6 +40,7 @@ public class Funcionario implements Serializable {
     @JoinTable(name = "tb_funcionario_funcao", joinColumns = @JoinColumn(name = "funcionario_id"), inverseJoinColumns = @JoinColumn(name = "funcao_id"))
     private Set<Funcao> funcoes = new HashSet<>();
 
+    @NotNull(message = "Favor preencher a empresa")
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;

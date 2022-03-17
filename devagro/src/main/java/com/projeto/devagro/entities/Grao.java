@@ -3,6 +3,7 @@ package com.projeto.devagro.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,12 +23,17 @@ public class Grao implements Serializable {
     @OneToMany(mappedBy = "grao")
     private Set<Fazenda> fazendas = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "tb_graos_empresas",
-            joinColumns = @JoinColumn(name = "empresa_id"),
-            inverseJoinColumns = @JoinColumn(name = "grao_id"))
-    private Set<Empresa> empresas = new HashSet<>();
+//    @ManyToMany(cascade = CascadeType.MERGE)
+//    @JoinTable(
+//            name = "tb_graos_empresas",
+//            joinColumns = @JoinColumn(name = "empresa_id"),
+//            inverseJoinColumns = @JoinColumn(name = "grao_id"))
+//    private Set<Empresa> empresas = new HashSet<>();
+
+    @NotNull(message = "Favor preencher a empresa")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "empresa_id", referencedColumnName = "id")
+    private Empresa empresa;
 
     public Grao() {
     }
@@ -36,7 +42,9 @@ public class Grao implements Serializable {
         this.id = id;
         this.nome = nome;
         this.tempoMedioColheita = tempoColheita;
-        empresas.add(empresa);
+        this.empresa = empresa;
+        empresa.addGraos(this);
+//        empresas.add(empresa);
     }
 
     public Long getId() {
@@ -73,13 +81,21 @@ public class Grao implements Serializable {
 
     }
 
-    public void addEmpresa(Empresa empresa){
-        empresas.add(empresa);
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public Set<Empresa> getEmpresas() {
-        return empresas;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
+
+    //    public void addEmpresa(Empresa empresa){
+//        empresas.add(empresa);
+//    }
+//
+//    public Set<Empresa> getEmpresas() {
+//        return empresas;
+//    }
 
     @Override
     public int hashCode() {
