@@ -50,11 +50,11 @@ public class DevagroApplication implements CommandLineRunner {
 		Funcao f2 = new Funcao(2L, "Operador de Plantador");
 		Funcao f3 = new Funcao(3L, "Piloto de Drone");
 
-		Funcionario func1 = new Funcionario(1L, "Dennis", "Ritchie", Sexo.MASCULINO,"Rua 2 num 4", 1200.0,  "(49) 916787675", "01/01/2001", "01/01/2022", e1);
-		Funcionario func2 = new Funcionario(2L, "Ada","Lovelace", Sexo.FEMININO, "Rua 7 num 32", 2000.0,  "(21) 916787675", "02/01/2001", "02/01/2022", e1);
-		Funcionario func3 = new Funcionario(3L, "Linus", "Torvalds", Sexo.MASCULINO,"Rua 1 num 42", 800.0,  "(31) 916787675", "03/01/2001",  "03/01/2022", e1);
-		Funcionario func4 = new Funcionario(4L, "Bjarn", "Stroustrup", Sexo.NAO_INFORMADO,"Rua 1 num 43", 500.0,  "(51) 916787675", "04/01/2001", "04/01/2022", e2);
-		Funcionario func5 = new Funcionario(5L, "Guido", "van Rossum", Sexo.MASCULINO,"Rua 42 num 6", 3000.0,  "(44) 916787675", "05/01/2001", "05/01/2022", e2);
+		Funcionario func1 = new Funcionario(1L, "Dennis", "Ritchie", "100.643.880-77", Sexo.MASCULINO,"Rua 2 num 4", 1200.0,  "(49) 916787675", "01/01/2001", "01/01/2022", e1);
+		Funcionario func2 = new Funcionario(2L, "Ada","Lovelace", "516.538.720-80", Sexo.FEMININO, "Rua 7 num 32", 2000.0,  "(21) 916787675", "02/01/2001", "02/01/2022", e1);
+		Funcionario func3 = new Funcionario(3L, "Linus", "Torvalds","089.470.250-54", Sexo.MASCULINO,"Rua 1 num 42", 800.0,  "(31) 916787675", "03/01/2001",  "03/01/2022", e1);
+		Funcionario func4 = new Funcionario(4L, "Bjarn", "Stroustrup","011.763.210-48", Sexo.NAO_INFORMADO,"Rua 1 num 43", 500.0,  "(51) 916787675", "04/01/2001", "04/01/2022", e2);
+		Funcionario func5 = new Funcionario(5L, "Guido", "van Rossum","069.010.080-90", Sexo.MASCULINO,"Rua 42 num 6", 3000.0,  "(44) 916787675", "05/01/2001", "05/01/2022", e2);
 
 		funcaoRepository.saveAll(Arrays.asList(f1, f2, f3));
 
@@ -68,30 +68,12 @@ public class DevagroApplication implements CommandLineRunner {
 
 		funcionarioRepository.saveAll(Arrays.asList(func1, func2, func3, func4, func5));
 
-//		func1.setEmpresa(e1);
-//		func2.setEmpresa(e1);
-//		func3.setEmpresa(e1);
-//
-//		funcionarioRepository.saveAll(Arrays.asList(func1, func2, func3, func4, func5));
-
-		Grao milho = new Grao(1L,"Milho", 120, e1);
-		Grao soja = new Grao(2L,"Soja", 150,  e1);
-		Grao feijao = new Grao(3L,"Feijão", 110, e2);
-		Grao arroz = new Grao(4L,"Arroz", 5000, e2);
-
-		//empresaRepository.saveAll(Arrays.asList(e1, e2));
+		Grao milho = new Grao(null,"Milho", 120, e1);
+		Grao soja = new Grao(null,"Soja", 150,  e1);
+		Grao feijao = new Grao(null,"Feijão", 110, e2);
+		Grao arroz = new Grao(null,"Arroz", 5000, e2);
 
 		graoRepository.saveAll(Arrays.asList(milho, soja, feijao, arroz));
-
-//		Fazenda fazenda1 = new Fazenda(1L, "Fazenda Arrocha","Rua 1 num 3", e1,  Instant.parse("2022-03-11T19:53:07Z"),milho , 1000.00);
-//		Fazenda fazenda2 = new Fazenda(2L, "Fazenda DevInHouse", "Rua 2 num 2",e1, Instant.parse("2022-03-11T03:42:10Z"),soja , 500.00);
-//		Fazenda fazenda3 = new Fazenda(3L, "Fazenda Ai Papai", "Rua 3 num 1", e2, Instant.parse("2022-03-11T15:21:22Z"),feijao , 3000.00);
-//		Fazenda fazenda4 = new Fazenda(4L, "Fazenda Cavalo", "Rua 8 num 8", e2, Instant.parse("2022-03-11T15:21:22Z"),arroz , 3000.00);
-//
-//
-//		fazendaRepository.saveAll(Arrays.asList(fazenda1, fazenda2, fazenda3, fazenda4));
-
-
 	}
 
 }

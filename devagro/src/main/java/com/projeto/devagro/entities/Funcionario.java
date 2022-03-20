@@ -3,6 +3,7 @@ package com.projeto.devagro.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.projeto.devagro.entities.enums.Sexo;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,12 @@ public class Funcionario implements Serializable {
     private Long id;
     private String nome;
     private String sobrenome;
+
+    @CPF
+    @NotNull(message = "Deve ter cpf")
+    @Pattern(regexp="(\\d{3}.?\\d{3}.?\\d{3}-?\\d{2})", message = "Favor formate assim CPF XXX.XXX.XXX-XX")
+    private String cpf;
+
     private Integer sexo;
     private String endereco;
     private Double salario;
@@ -48,11 +55,12 @@ public class Funcionario implements Serializable {
     public Funcionario() {
     }
 
-    public Funcionario(Long id, String nome, String sobrenome, Sexo sexo, String endereco, Double salario, String telefone, String nascimento, String contratacao, Empresa empresa) {
+    public Funcionario(Long id, String nome, String sobrenome, String cpf, Sexo sexo, String endereco, Double salario, String telefone, String nascimento, String contratacao, Empresa empresa) {
         super();
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
+        this.cpf = cpf;
         setSexo(sexo);
         this.endereco = endereco;
         this.salario = salario;
@@ -84,6 +92,14 @@ public class Funcionario implements Serializable {
 
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Sexo getSexo() {

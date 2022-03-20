@@ -23,13 +23,6 @@ public class Grao implements Serializable {
     @OneToMany(mappedBy = "grao")
     private Set<Fazenda> fazendas = new HashSet<>();
 
-//    @ManyToMany(cascade = CascadeType.MERGE)
-//    @JoinTable(
-//            name = "tb_graos_empresas",
-//            joinColumns = @JoinColumn(name = "empresa_id"),
-//            inverseJoinColumns = @JoinColumn(name = "grao_id"))
-//    private Set<Empresa> empresas = new HashSet<>();
-
     @NotNull(message = "Favor preencher a empresa")
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")

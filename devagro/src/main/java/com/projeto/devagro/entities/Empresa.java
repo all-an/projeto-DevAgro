@@ -22,7 +22,7 @@ public class Empresa implements Serializable {
     private String nome;
 
     @CNPJ
-    @Pattern(regexp="\\d{2}.?\\d{3}.?\\d{3}/?\\d{4}-?\\d{2}", message = "Formate assim CNPJ XX.XXX.XXX/XXXX-XX")
+    @Pattern(regexp="\\d{2}.?\\d{3}.?\\d{3}/?\\d{4}-?\\d{2}", message = "Favor formate assim CNPJ XX.XXX.XXX/XXXX-XX")
     private String cnpj;
 
     private String endereco;

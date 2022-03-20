@@ -116,8 +116,9 @@ API Rest em Java para o controle de produção agrícola com interação entre F
 
 ```json
 {
-    "nome": "Allan",
+    "nome": "MAIRAMUANA",
     "sobrenome": "Ritchie",
+    "cpf": "704.699.550-82",
     "sexo": "MASCULINO",
     "endereco": "Rua 2 num 4",
     "salario": 1200.0,
