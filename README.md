@@ -22,9 +22,6 @@ API Rest em Java para o controle de produção agrícola com interação entre F
 
 ## Cadastrando Empresa:
 ```json
-```
-
-```json
 {
     "nome": "Empresa SENAI LTDA",
     "cnpj": "00.536.492/0001-34",
